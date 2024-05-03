@@ -9,11 +9,9 @@
   "keywords": [],
   "author": "Async Await Adventurers",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "ts-node": "^10.9.2",
     "@playwright/test": "^1.43.1",
     "@types/node": "^20.12.8"
-  },
-  "dependencies": {
-    "ts-node": "^10.9.2"
   }
 }
