@@ -1,4 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { Header } from "../fragments/Header";
 
 export class BasePage {
   public page: Page;
@@ -9,6 +10,11 @@ export class BasePage {
 
   //locators
   readonly title: Locator;
+  //readonly header: Header = new Header(this.page.locator('#header_container'));
+
+  get header(): Header {
+    return new Header(this.page.locator('#header_container'));
+  }
 
   pageUrl(): string {
     return ''

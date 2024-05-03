@@ -1,11 +1,14 @@
 import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { BurgerMenuFragment } from "../fragments/BurgerMenuFragment";
+import { ProductCard } from "../fragments/ProductCard";
 
 export class ProductsPage extends BasePage {
-  //locators
-  readonly burgerMenu = new BurgerMenuFragment(this.page.locator('#react-burger-menu-btn'))
-  //methods
+  // Fragments
+  productCard(index: number): ProductCard {
+    return new ProductCard(this.page.locator(`[data-test="inventory-item"]:nth-child(${index})`));
+  }
+
+  // Methods
   pageUrl(): string {
     return "/inventory.html";
   }

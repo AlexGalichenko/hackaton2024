@@ -1,7 +1,5 @@
-import defineConfig from '../playwright.config.ts';
 import { users } from '../data/testData';
 import { test, expect } from '../po/fixtures';
-import { deepEqual } from 'assert';
 
 test.describe('Login/Logout feature', () => {
   test.beforeEach('', async ({ loginPage }) => {
