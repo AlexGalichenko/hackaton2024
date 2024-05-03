@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { execSync } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
@@ -14,25 +15,28 @@ Consider aspects such as variable naming, function design, error handling, and o
 Identify potential bugs, how changes may affect other code, and opportunities for optimization. 
 Your review should aim to enhance the code's quality, maintainability, and scalability. 
 Provide recommendations to human code reviewers.
-
-Diff:
-
 `
-export function getChangedFiles(targetBranch: string) {
+function getChangedFiles(targetBranch: string) {
     execSync(`git fetch`);
     return execSync(`git --no-pager diff ${targetBranch} ':(exclude)package-lock.json'`)
         .toString()
 }
 
+function getAdditionalInfo(){
+    const path='codesworth.txt';
+    return existsSync(path) ? readFileSync(path,'utf-8') : '';
+}
+
 async function main() {
     const gitDiff = getChangedFiles('origin/main');
-    const codeReviewPrompt = `${prompt}${gitDiff}`;
+    const additionalInfo = getAdditionalInfo();
+    const codeReviewPrompt = `${prompt}\n:Additional Info:\n${additionalInfo}\nDiff:\n${gitDiff}`;
     const chatCompletion = await openai.chat.completions.create({
         messages: [{ role: 'user', content: codeReviewPrompt }],
         model: 'gpt-3.5-turbo',
     });
-    console.log(chatCompletion);
-    console.log(chatCompletion.choices[0]);
+    console.log(codeReviewPrompt);
+    console.log(chatCompletion.choices[0].message.content);
 }
 
 console.log(getChangedFiles('origin/main'))
