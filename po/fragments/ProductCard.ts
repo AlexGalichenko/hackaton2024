@@ -8,4 +8,5 @@ export class ProductCard extends BaseFragment {
 
   readonly title: Locator = this.rootLocator.locator('a[id*="title"]');
   readonly addToCart: Locator = this.rootLocator.locator('[id*="add-to-cart"]');
+  readonly removeFromCart: Locator = this.page.locator('[data-test*="remove"]');
 }
