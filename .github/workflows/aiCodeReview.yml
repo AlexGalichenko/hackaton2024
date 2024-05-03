@@ -14,8 +14,8 @@ jobs:
       - name: Checking out code
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: npm install
-      - name: Run code review
+        run: npm ci
+      - name: Perform code review
         run: npm run codereview
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
