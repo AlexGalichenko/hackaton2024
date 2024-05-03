@@ -5,4 +5,4 @@ export function getChangedFiles(targetBranch: string) {
         .toString()
 }
 
-console.log(getChangedFiles('main'))
+console.log(getChangedFiles('origin/main'))
