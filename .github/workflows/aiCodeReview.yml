@@ -19,3 +19,4 @@ jobs:
         run: npm run codereview
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GH_PAT: ${{ secrets.GH_PAT }}
