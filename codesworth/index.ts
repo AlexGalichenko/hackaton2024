@@ -51,8 +51,8 @@ async function main() {
     messages: [{role: 'user', content: codeReviewPrompt}],
     model: 'gpt-4-turbo',
   });
-  const commentBody = chatCompletion.choices[0].message.content;
-  await addPrComment(commentBody as string);
+  const commentBody = chatCompletion.choices[0].message.content ?? '';
+  await addPrComment(commentBody);
   if (commentBody.toLowerCase().includes('changes requested')) process.exit(1)
 }
 
