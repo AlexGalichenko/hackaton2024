@@ -15,5 +15,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run code review
-        run: |
-          echo "Running build steps.."
+        run: npm run codereview

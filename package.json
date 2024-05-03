@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "readme",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "codereview": "ts-node codesworth"
+  },
   "keywords": [],
-  "author": "",
+  "author": "Async Await Adventurers",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.43.1",
     "@types/node": "^20.12.8"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
   }
 }
