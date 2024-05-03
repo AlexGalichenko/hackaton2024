@@ -10,8 +10,10 @@
   "author": "Async Await Adventurers",
   "license": "ISC",
   "dependencies": {
-    "ts-node": "^10.9.2",
     "@playwright/test": "^1.43.1",
-    "@types/node": "^20.12.8"
+    "@types/node": "^20.12.8",
+    "dotenv": "^16.4.5",
+    "openai": "^4.40.1",
+    "ts-node": "^10.9.2"
   }
 }
