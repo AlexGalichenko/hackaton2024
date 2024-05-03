@@ -27,6 +27,6 @@ jobs:
         retention-days: 30
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v4
-      if: always
+      if: always()
       with:
         report_paths: './results.xml'
