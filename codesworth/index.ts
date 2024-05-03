@@ -2,10 +2,13 @@ import 'dotenv/config';
 import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import OpenAI from 'openai';
+import {Octokit} from '@octokit/rest';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
+
+const octokit = new Octokit({auth: process.env.GH_PAT});
 
 const prompt = `
 Act as a senior developer. 
@@ -35,10 +38,16 @@ async function main() {
         messages: [{ role: 'user', content: codeReviewPrompt }],
         model: 'gpt-3.5-turbo',
     });
-    console.log(codeReviewPrompt);
-    console.log(chatCompletion.choices[0].message.content);
+    const commentBody =  chatCompletion.choices[0].message.content;
+    await octokit.issues.createComment({
+        owner: 'AlexGalichenko',
+        repo: 'hackaton2024',
+        issue_number: Number((process.env.GITHUB_REF as string).match(/\d+/)),
+        body: commentBody as string,
+        headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+    })
 }
-
-console.log(getChangedFiles('origin/main'))
 
 main();
