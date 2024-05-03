@@ -6,12 +6,14 @@ test.describe('Login/Logout feature', () => {
     await loginPage.open();
     await loginPage.login(users.standardUser);
   })
-
+  
   test('Verify user able to login', async ({ productsPage }) => {
-    await expect(productsPage.page).toHaveURL(productsPage.pageUrl());
-  });
+    await expect(productsPage.page.url()).toContain(productsPage.pageUrl());
+  }); 
 
-  test('Verify user able to logout', async ({ productsPage }) => {
-    await productsPage.page.url()
+  test('Verify user able to logout', async ({ productsPage, loginPage, baseURL }) => {
+    await productsPage.burgerMenu.rootLocator.click();
+    await productsPage.burgerMenu.logoutButton.click();
+    await expect(loginPage.page).toHaveURL(baseURL as string);
   });
 })

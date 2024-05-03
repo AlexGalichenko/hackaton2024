@@ -29,4 +29,3 @@ export const test = testExtendedWithPages;
 export const expect = test.expect;
 export const slowExpect = expect.configure({ timeout: 10000 });
 export const extremelySlowExpect = expect.configure({ timeout: 20000 });
-
