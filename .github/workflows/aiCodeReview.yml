@@ -20,3 +20,4 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          BOT_OWNER: ${{ secrets.BOT_OWNER }}

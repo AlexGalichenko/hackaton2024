@@ -40,7 +40,7 @@ async function main() {
     });
     const commentBody =  chatCompletion.choices[0].message.content;
     await octokit.issues.createComment({
-        owner: 'AlexGalichenko',
+        owner: process.env.BOT_OWNER,
         repo: 'hackaton2024',
         issue_number: Number((process.env.GITHUB_REF as string).match(/\d+/)),
         body: commentBody as string,
