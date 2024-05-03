@@ -1,0 +1,21 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+
+jobs:
+  aiCodeReview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v4
+      - name: Run code review
+        run: npm install
+      - name: Run code review
+        run: npm run codereview
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
