@@ -17,7 +17,7 @@ providing detailed feedback on its structure, efficiency, readability, and adher
 Consider aspects such as variable naming, function design, error handling, and overall code organization. 
 Identify potential bugs, how changes may affect other code, and opportunities for optimization. 
 Your review should aim to enhance the code's quality, maintainability, and scalability. 
-Provide recommendations to human code reviewers.
+Provide recommendations to human code reviewers. Depending on presence or absence of critical issues provide your review status one of "approved" or "changes requested".
 `
 
 function getChangedFiles(targetBranch: string) {
@@ -53,6 +53,7 @@ async function main() {
   });
   const commentBody = chatCompletion.choices[0].message.content;
   await addPrComment(commentBody as string);
+  if (commentBody.toLowerCase().includes('changes requested')) process.exit(1)
 }
 
 main();
