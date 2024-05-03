@@ -36,7 +36,7 @@ async function main() {
     const codeReviewPrompt = `${prompt}\n:Additional Info:\n${additionalInfo}\nDiff:\n${gitDiff}`;
     const chatCompletion = await openai.chat.completions.create({
         messages: [{ role: 'user', content: codeReviewPrompt }],
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4-turbo',
     });
     const commentBody =  chatCompletion.choices[0].message.content;
     await octokit.issues.createComment({
