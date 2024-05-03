@@ -1,0 +1,19 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+
+jobs:
+  aiCodeReview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v4
+
+      - name: Run code review
+        run: |
+          echo "Running build steps.."
