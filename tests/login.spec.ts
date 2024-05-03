@@ -6,10 +6,10 @@ test.describe('Login/Logout feature', () => {
     await loginPage.open();
     await loginPage.login(users.standardUser);
   })
-  
+
   test('Verify user able to login', async ({ productsPage }) => {
-    await expect(productsPage.page.url()).toContain(productsPage.pageUrl());
-  }); 
+    await expect(productsPage.page).toHaveURL(productsPage.pageUrl());
+  });
 
   test('Verify user able to logout', async ({ productsPage }) => {
     await productsPage.page.url()

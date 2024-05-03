@@ -28,5 +28,5 @@ const testExtendedWithPages = base.extend<Objects>({
 export const test = testExtendedWithPages;
 export const expect = test.expect;
 export const slowExpect = expect.configure({ timeout: 10000 });
-export const extrimelySlowExpect = expect.configure({ timeout: 20000 });
+export const extremelySlowExpect = expect.configure({ timeout: 20000 });
 
