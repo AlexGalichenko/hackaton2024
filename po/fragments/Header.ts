@@ -7,4 +7,5 @@ export class Header extends BaseFragment {
   }
   
   readonly cart: Locator = this.page.locator('#shopping_cart_container');
+  readonly cartCounter: Locator = this.page.locator('[data-test="shopping-cart-badge"]');
 }
