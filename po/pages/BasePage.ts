@@ -8,14 +8,15 @@ export class BasePage {
     this.page = page;
   }
 
-  //locators
+  // Locators
   readonly title: Locator;
-  //readonly header: Header = new Header(this.page.locator('#header_container'));
 
+  // Fragments
   get header(): Header {
     return new Header(this.page.locator('#header_container'));
   }
 
+  // Methods
   pageUrl(): string {
     return ''
   }
