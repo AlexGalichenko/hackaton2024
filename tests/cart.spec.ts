@@ -7,13 +7,13 @@ test.describe('Cart feature', () => {
     await loginPage.login(users.standardUser);
   });
   
-  test('Verify user able to add product to cart', async ({ productsPage, productCardPage, cartPage }) => {
+  test('Verify user able to add product to cart', async ({ productsPage, cartPage }) => {
     const expectedProduct = await productsPage.productCard(1).title.innerText();
   
     await productsPage.productCard(1).addToCart.click();
     await expect(productsPage.header.cartCounter).toHaveText('1');
 
-    await productCardPage.header.cart.click();
+    await productsPage.header.cart.click();
     await expect(await cartPage.cartItem(1).title.innerText()).toEqual(expectedProduct);
   });
   
@@ -30,6 +30,6 @@ test.describe('Cart feature', () => {
 
     await productsPage.productCard(1).removeFromCart.click();
     await expect(await productsPage.productCard(1).addToCart).toBeVisible();
-    await expect(productsPage.header.cartCounter).not.toBeVisible()  
+    await expect(productsPage.header.cartCounter).not.toBeVisible();  
   });
 })

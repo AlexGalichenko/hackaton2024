@@ -22,9 +22,15 @@ test.describe('Product Card Feature', () => {
     await expect(await cartPage.cartItem(1).title.innerText()).toEqual(expectedProduct);
   });
 
-  test('Verify user able to remove product from cart from product card page', async ({ productsPage, cartPage }) => {
-    const expectedProduct = await productsPage.productCard(1).title.innerText();
-    await productsPage.productCard(1).addToCart.click();
+  test('Verify user able to remove product from cart from product card page', async ({ productsPage, productCardPage }) => {
+    await productsPage.productCard(1).title.click();
+    await productCardPage.addToCart.click();
+    await expect(productCardPage.removeFromCart).toBeVisible();
+    await expect(productCardPage.header.cartCounter).toHaveText('1');
+
+    await productCardPage.removeFromCart.click();
+    await expect(await productCardPage.addToCart).toBeVisible();
+    await expect(productCardPage.header.cartCounter).not.toBeVisible(); 
   });
 
 })

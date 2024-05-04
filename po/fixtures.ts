@@ -3,12 +3,18 @@ import { LoginPage } from "./pages/LoginPage";
 import { ProductsPage } from "./pages/ProductsPage";
 import { ProductCardPage } from "./pages/ProductCardPage";
 import { CartPage } from "./pages/CartPage";
+import { CheckoutPage } from "./pages/CheckoutPage";
+import { CheckoutOverviewPage } from "./pages/CheckoutOverviewPage";
+import { CheckoutSuccessPage } from "./pages/CheckoutSuccesPage";
 
 type Objects = {
   loginPage: LoginPage;
   productsPage: ProductsPage;
   productCardPage: ProductCardPage;
   cartPage: CartPage;
+  checkoutPage: CheckoutPage;
+  checkoutOverviewPage: CheckoutOverviewPage;
+  checkoutSuccessPage: CheckoutSuccessPage;
 };
 
 const testExtendedWithPages = base.extend<Objects>({
@@ -23,6 +29,15 @@ const testExtendedWithPages = base.extend<Objects>({
   },
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page));
+  },
+  checkoutPage: async ({ page }, use) => {
+    await use(new CheckoutPage(page));
+  },
+  checkoutOverviewPage: async ({ page }, use) => {
+    await use(new CheckoutOverviewPage(page));
+  },
+  checkoutSuccessPage: async ({ page }, use) => {
+    await use(new CheckoutSuccessPage(page));
   }
 });
 export const test = testExtendedWithPages;
